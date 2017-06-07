@@ -7,6 +7,7 @@ app.get("/:val", function(req, res){
     var unix = + new Date(val);
     var natural;
     var ret = {unix:null, natural:null};
+  
     console.log(val);
     if(unix){
         console.log("natural entered");
@@ -30,11 +31,13 @@ app.get("/:val", function(req, res){
         
     }
     
+    
     res.send(ret);
     
 });
 
-app.listen(process.env.PORT);
+app.use(express.static('public'));
+app.listen(process.env.PORT || 80);
 
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
